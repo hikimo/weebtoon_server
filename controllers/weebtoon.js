@@ -1,4 +1,9 @@
+const models = require('../models')
+const Manga = models.manga 
+
 exports.index = (req, res) => {
-  res.send({status: 'success'})
+  Manga.findAll().then(mangas => {
+    res.send({mangas})
+  })
 }
 

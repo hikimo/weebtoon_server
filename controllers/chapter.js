@@ -1,3 +1,10 @@
+const models = require('../models')
+const Chapter = models.chapter 
+
 exports.show = (req, res) => {
-  res.send({status: 'success', data: { id: req.params.id}})
+  Chapter.findAll({
+    where: { manga_id: req.params.id }
+  }).then(chapter => {
+    res.send(chapter)
+  })
 } 
