@@ -17,6 +17,16 @@ module.exports = {
       img: {
         type: Sequelize.STRING
       },
+      manga_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'mangas',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
+      },
       chapter_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
