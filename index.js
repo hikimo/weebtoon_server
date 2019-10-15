@@ -17,8 +17,7 @@ const ChaptersController = require('./controllers/chapter')
 app.group('/api/v1', router => {
 
   // get weebtoon data
-  router.get('/weebtoons', WeebtoonsController.index)
-  router.get('/weebtoon/:id/chapters', ChaptersController.show)
+  
 })
 
 
