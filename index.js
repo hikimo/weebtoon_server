@@ -9,7 +9,6 @@ app.use(bodyParser.json())
 
 // Controllers
 const WeebtoonsController = require('./controllers/weebtoon')
-const ChaptersController = require('./controllers/chapter')
 
 // Middlewares
 
@@ -17,7 +16,7 @@ const ChaptersController = require('./controllers/chapter')
 app.group('/api/v1', router => {
 
   // get weebtoon data
-  
+  router.get('/weebtoons', WeebtoonsController.index)
 })
 
 
