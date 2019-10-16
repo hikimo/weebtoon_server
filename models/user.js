@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'user_id',
       //otherKey: 'manga_id'
     });
+    user.hasMany(models.manga, {
+      foreignKey: 'created_by'
+    })
   };
   return user;
 };

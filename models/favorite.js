@@ -1,12 +1,12 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const favorites = sequelize.define('favorites', {
+  const favorite = sequelize.define('favorites', {
     user_id: DataTypes.INTEGER,
     manga_id: DataTypes.INTEGER
   }, {});
-  favorites.associate = function(models) {
+  favorite.associate = function(models) {
     // associations can be defined here
     
   };
-  return favorites;
+  return favorite;
 };

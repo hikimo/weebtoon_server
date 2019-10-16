@@ -46,3 +46,13 @@ exports.favorites = (req, res) => {
     res.send(fav)
   })
 }
+
+exports.showCreation = (req, res) => {
+  User.findAll({
+    include: [{
+      model: Manga
+    }]
+  }).then(creation => {
+    res.send(creation)
+  })
+}
