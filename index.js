@@ -30,6 +30,8 @@ app.group('/api/v1', router => {
 
   // Weebtoon creation
   router.get('/user/weebtoons', WeebtoonsController.showCreation)
+  router.get('/user/:id/weebtoon/:wId/chapters', WeebtoonsController.showCreationChapter)
+  router.post('/user/:id/weebtoon', WeebtoonsController.store)
   
   // Favorites API
   router.get('/weebtoon/:id/favorites', authorization, WeebtoonsController.favorites)

@@ -1,7 +1,8 @@
 const models = require('../models')
 const Manga = models.manga 
 const User = models.user
-const Fav = models.favorites
+const Fav = models.favorite
+const Chapter = models.chapter
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 
@@ -54,5 +55,23 @@ exports.showCreation = (req, res) => {
     }]
   }).then(creation => {
     res.send(creation)
+  })
+}
+
+exports.showCreationChapter = (req, res) => {
+  Chapter.findAll({
+    where: {manga_id : req.params.id}
+  }).then(creation => {
+    res.send(creation)
+  })
+}
+
+exports.store = (req, res) => {
+  const { name, cover } = req.body
+  const created_by = req.params.id
+  Manga.create({
+    name, cover, created_by
+  }).then(() => {
+    res.send({error: false, message: 'success'})
   })
 }
