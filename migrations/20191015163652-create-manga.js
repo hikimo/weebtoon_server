@@ -14,6 +14,9 @@ module.exports = {
       is_hot: {
         type: Sequelize.BOOLEAN
       },
+      is_favorite: {
+        type: Sequelize.BOOLEAN
+      },
       banner: {
         type: Sequelize.STRING
       },
