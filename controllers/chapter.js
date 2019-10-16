@@ -12,6 +12,18 @@ exports.show = (req, res) => {
   })
 } 
 
+
+exports.showCreation = (req, res) => {
+  Chapter.findAll({
+    where: { manga_id: req.params.wId }
+  }).then(chapter => {
+    if(chapter.length >= 1)
+    res.send(chapter)
+    else 
+    res.send({error: true, message: 'Chapter(s) not found'})
+  })
+}
+
 exports.store = (req, res) => {
   const { title, img } = req.body
   const wId = req.params.wId
@@ -20,13 +32,10 @@ exports.store = (req, res) => {
   }).then(() => res.send({error: false, message: "Success"}))
 }
 
-exports.showCreation = (req, res) => {
-  Chapter.findAll({
-    where: { manga_id: req.params.wId }
-  }).then(chapter => {
-    if(chapter.length >= 1)
-      res.send(chapter)
-    else 
-      res.send({error: true, message: 'Chapter(s) not found'})
+exports.delete = (req, res) => {
+  Chapter.destroy({
+    where: { id: req.params.wId }
+  }).then(() => {
+    res.send({error: true, message: 'Chapter(s) not found'})
   })
 } 
