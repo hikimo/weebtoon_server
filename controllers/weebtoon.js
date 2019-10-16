@@ -88,3 +88,13 @@ exports.update = (req, res) => {
     res.send({error: false, message: 'success'})
   })
 }
+
+exports.delete = (req, res) => {
+  Manga.destroy({
+    where: {
+      id: req.params.wId
+    }
+  }).then(() => {
+    res.send({error: false, message: 'success'})
+  })
+}
