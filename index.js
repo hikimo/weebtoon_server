@@ -27,6 +27,9 @@ app.group('/api/v1', router => {
   router.get('/weebtoons', authorization, WeebtoonsController.index)
   router.get('/weebtoon/:id/chapters', authorization, ChaptersController.show)
   router.get('/weebtoon/:id/chapter/:iChapter', authorization, ChapterPagesController.show)
+
+  // Favorites API
+  router.get('/weebtoon/:id/favorites', authorization, WeebtoonsController.favorites)
 })
 
 

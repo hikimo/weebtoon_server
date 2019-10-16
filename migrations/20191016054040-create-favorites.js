@@ -1,36 +1,28 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('mangas', {
+    return queryInterface.createTable('favorites', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
-      },
-      is_hot: {
-        type: Sequelize.BOOLEAN
-      },
-      is_favorite: {
-        type: Sequelize.BOOLEAN
-      },
-      favorites: {
-        type: Sequelize.INTEGER
-      },
-      banner: {
-        type: Sequelize.STRING
-      },
-      cover: {
-        type: Sequelize.STRING
-      },
-      created_by: {
+      user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
           model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+        onDelete: 'cascade',
+      },
+      manga_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: 'mangas',
           key: 'id'
         },
         onUpdate: 'cascade',
@@ -49,6 +41,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('mangas');
+    return queryInterface.dropTable('favorites');
   }
 };
