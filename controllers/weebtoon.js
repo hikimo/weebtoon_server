@@ -75,3 +75,16 @@ exports.store = (req, res) => {
     res.send({error: false, message: 'success'})
   })
 }
+
+exports.update = (req, res) => {
+  const { name, cover } = req.body
+  Manga.update({
+    name, cover
+  }, {
+    where: {
+      id: req.params.wId
+    }
+  }).then(() => {
+    res.send({error: false, message: 'success'})
+  })
+}
