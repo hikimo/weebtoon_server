@@ -37,7 +37,7 @@ exports.delete = (req, res) => {
   Chapter.destroy({
     where: { id: req.params.wId }
   }).then(() => {
-    res.send({error: true, message: 'Chapter(s) not found'})
+    res.send({error: false, message: 'success'})
   })
 } 
 
@@ -51,3 +51,11 @@ exports.storeImg = (req, res) => {
     res.send({error: false, message: "success"})
   })
 }
+
+exports.delete = (req, res) => {
+  Page.destroy({
+    where: { id: req.params.iId }
+  }).then(() => {
+    res.send({error: false, message: 'success'})
+  })
+} 
