@@ -27,17 +27,10 @@ exports.index = (req, res) => {
   }
 }
 
-// exports.favorites = (req, res) => {
-//   Fav.findAll({
-//     where: { user_id : req.params.id }
-//   }).then(fav => {
-//     res.send(fav)
-//     if(fav.length > 0) {
-//       Manga.findAll({
-//         where: { id: fav.manga_id }
-//       }).then(manga => res.send({error: false, data: manga}))
-//     } else {
-//       res.send({error: true, message: 'There\'s no favorite manga(s) found'})
-//     }
-//   })
-// }
+exports.favorites = (req, res) => {
+  Fav.findAll({
+    where: { user_id : req.params.id }
+  }).then(fav => {
+    res.send(fav)
+  })
+}
