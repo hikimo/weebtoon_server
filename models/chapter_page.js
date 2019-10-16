@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
     chapter_id: DataTypes.INTEGER
   }, {});
   chapter_page.associate = function(models) {
-    // associations can be defined here
+    // page belongsTo chapter on chapter_id
+    chapter_page.belongsTo(models.chapter, {foreignKey: 'chapter_id'})
   };
   return chapter_page;
 };

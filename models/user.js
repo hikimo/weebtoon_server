@@ -7,7 +7,11 @@ module.exports = (sequelize, DataTypes) => {
     photo: DataTypes.STRING
   }, {});
   user.associate = function(models) {
-    // associations can be defined here
+    user.belongsToMany(models.manga, {
+      through: 'favorites',
+      foreignKey: 'user_id',
+      //otherKey: 'manga_id'
+    });
   };
   return user;
 };

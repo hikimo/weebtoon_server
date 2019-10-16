@@ -1,5 +1,6 @@
 const models = require('../models')
 const Manga = models.manga 
+const User = models.user
 const Fav = models.favorites
 const sequelize = require('sequelize')
 const Op = sequelize.Op
@@ -28,8 +29,19 @@ exports.index = (req, res) => {
 }
 
 exports.favorites = (req, res) => {
-  Fav.findAll({
-    where: { user_id : req.params.id }
+  Manga.findAll({
+    // where: { user_id : req.params.id },
+    include: [
+      {
+        model: User,
+        as: 'isFavorite',
+        through: {
+          model: Fav,
+          as: 'favRef',
+          where: { user_id: req.params.id }
+        }
+      },
+    ]
   }).then(fav => {
     res.send(fav)
   })

@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   manga.associate = function(models) {
     // associations can be defined here
+    manga.belongsTo(models.user, {foreignKey: 'created_by'})
+    manga.belongsToMany(models.user, {
+      through: 'favorites',
+      as: 'isFavorite',
+      foreignKey: 'manga_id',
+      //otherKey: 'user_id'
+    });
   };
   return manga;
 };

@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     img: DataTypes.STRING
   }, {});
   chapter.associate = function(models) {
-    // associations can be defined here
+    // chapter belongsTo manga -> manga_id
+    chapter.belongsTo(models.manga, {foreignKey: 'manga_id'})
   };
   return chapter;
 };

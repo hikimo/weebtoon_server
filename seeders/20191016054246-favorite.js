@@ -16,16 +16,12 @@ module.exports = {
         manga_id: 3
       },
       {
-        user_id: 1,
-        manga_id: 3
-      },
-      {
         user_id: 2,
         manga_id: 4
       },
       {
         user_id: 2,
-        manga_id: 4
+        manga_id: 1
       },
     ], {});
   },
