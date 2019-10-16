@@ -11,16 +11,21 @@ app.use(bodyParser.json())
 const WeebtoonsController = require('./controllers/weebtoon')
 const ChaptersController = require('./controllers/chapter')
 const ChapterPagesController = require("./controllers/chapterPages")
+const AuthController = require('./controllers/auth') 
 
 // Middlewares
+const { authorization } = require('./middlewares/main')
 
 // Group Router
 app.group('/api/v1', router => {
 
+  // login API
+  router.post('/login', AuthController.show)
+  
   // get weebtoon data
-  router.get('/weebtoons', WeebtoonsController.index)
-  router.get('/weebtoon/:id/chapters', ChaptersController.show)
-  router.get('/weebtoon/:id/chapter/:iChapter', ChapterPagesController.show)
+  router.get('/weebtoons', authorization, WeebtoonsController.index)
+  router.get('/weebtoon/:id/chapters', authorization, ChaptersController.show)
+  router.get('/weebtoon/:id/chapter/:iChapter', authorization, ChapterPagesController.show)
 })
 
 
