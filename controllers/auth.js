@@ -3,7 +3,7 @@ const models = require('../models')
 const User = models.user
 const bcrypt = require('bcrypt')
 
-exports.show = (req, res) => {
+exports.login = (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
@@ -19,6 +19,20 @@ exports.show = (req, res) => {
         error: true,
         message: "Wrong email or password!"
       })
+    }
+  })
+}
+
+exports.store = (req, res) => {
+  const { email, password } = req.body
+  User.findOrCreate({
+    where: { email },
+    defaults: { email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) }
+  }).then(([user, created]) => {
+    if(created) {
+      res.send({error: false, message: "success", data: user})
+    } else {
+      res.send({error: true, message: "Email is already used", email: user.email})
     }
   })
 }

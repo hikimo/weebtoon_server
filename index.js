@@ -20,7 +20,8 @@ const { authorization } = require('./middlewares/main')
 app.group('/api/v1', router => {
 
   // login API
-  router.post('/login', AuthController.show)
+  router.post('/login', AuthController.login)
+  router.post('/register', AuthController.store)
   
   // get weebtoon data
   router.get('/weebtoons', authorization, WeebtoonsController.index)
