@@ -1,5 +1,6 @@
 const models = require('../models')
-const Chapter = models.chapter 
+const Chapter = models.chapter
+const Page = models.chapter_page
 
 exports.show = (req, res) => {
   Chapter.findAll({
@@ -39,3 +40,14 @@ exports.delete = (req, res) => {
     res.send({error: true, message: 'Chapter(s) not found'})
   })
 } 
+
+exports.storeImg = (req, res) => {
+  const { page, name, img } = req.body
+  const manga_id = (req.params.wId)
+  const chapter_id = req.params.cId
+  Page.create({
+    page, name, manga_id, img, chapter_id
+  }).then(() => {
+    res.send({error: false, message: "success"})
+  })
+}

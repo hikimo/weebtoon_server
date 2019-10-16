@@ -37,6 +37,10 @@ app.group('/api/v1', router => {
   // Weebtoon chapter
   router.post('/user/:id/weebtoon/:wId/chapter', ChaptersController.store)
   router.get('/user/:id/weebtoon/:wId/chapters', ChaptersController.showCreation)  
+
+  // Creation chapter
+  router.post('/user/:id/weebtoon/:wId/chapter/:cId/image', ChaptersController.storeImg)
+  
   // Favorites API
   router.get('/weebtoon/:id/favorites', authorization, WeebtoonsController.favorites)
 })
