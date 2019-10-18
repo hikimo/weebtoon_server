@@ -32,9 +32,9 @@ exports.showCreation = (req, res) => {
     }]
   }).then(chapter => {
     if(chapter.length >= 1)
-    res.send(chapter)
+      res.send(chapter)
     else 
-    res.send({error: true, message: 'Chapter(s) not found'})
+      res.send({error: true, message: 'Chapter(s) not found'})
   })
 }
 
