@@ -11,6 +11,9 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
+      chapter: {
+        type: Sequelize.INTEGER
+      },
       manga_id: {
         type: Sequelize.INTEGER,
         allowNull: false,

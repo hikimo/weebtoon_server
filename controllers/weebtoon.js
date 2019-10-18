@@ -2,7 +2,6 @@ const models = require('../models')
 const Manga = models.manga 
 const User = models.user
 const Fav = models.favorite
-const Chapter = models.chapter
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 

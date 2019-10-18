@@ -9,7 +9,7 @@ exports.login = (req, res) => {
 
   User.findOne({ where: { email } }).then( user => {
     if(bcrypt.compareSync(password, user.password)) {
-      const token = jwt.sign({ id: user.id }, 'teto-foreva', { expiresIn: 60 * 60 })
+      const token = jwt.sign({ id: user.id }, 'teto-foreva', { expiresIn: 604800000000 })
       res.send({
         user,
         token
@@ -30,7 +30,8 @@ exports.store = (req, res) => {
     defaults: { email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) }
   }).then(([user, created]) => {
     if(created) {
-      res.send({error: false, message: "success", data: user})
+      const token = jwt.sign({ id: user.id }, 'teto-foreva', { expiresIn: 604800000000 })
+      res.send({error: false, message: "success", data: user, token})
     } else {
       res.send({error: true, message: "Email is already used", email: user.email})
     }

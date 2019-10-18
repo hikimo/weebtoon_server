@@ -1,5 +1,6 @@
 const models = require('../models')
 const Chapter = models.chapter
+const Manga = models.manga 
 const Page = models.chapter_page
 
 exports.show = (req, res) => {
@@ -16,7 +17,19 @@ exports.show = (req, res) => {
 
 exports.showCreation = (req, res) => {
   Chapter.findAll({
-    where: { manga_id: req.params.wId }
+    include: [{
+      model: Manga,
+      where: {
+        id: req.params.wId,
+        created_by: req.params.id
+      },
+      attributes: {
+        exclude: [
+          'id', 'name', 'is_hot', 'is_favorite', 'favorites', 'banner', 'cover',
+          'createdAt', 'updatedAt'
+        ]
+      }
+    }]
   }).then(chapter => {
     if(chapter.length >= 1)
     res.send(chapter)

@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const chapter = sequelize.define('chapter', {
     title: DataTypes.STRING,
+    chapter: DataTypes.INTEGER,
     manga_id: DataTypes.INTEGER,
     img: DataTypes.STRING
   }, {});

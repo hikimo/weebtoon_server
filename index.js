@@ -24,24 +24,23 @@ app.group('/api/v1', router => {
   router.post('/register', AuthController.store)
   
   // get weebtoon data
-  router.get('/weebtoons', authorization, WeebtoonsController.index)
-  router.get('/weebtoon/:id/chapters', authorization, ChaptersController.show)
-  router.get('/weebtoon/:id/chapter/:iChapter', authorization, ChapterPagesController.show)
+  router.get('/weebtoons', WeebtoonsController.index)
+  router.get('/weebtoon/:id/chapters', ChaptersController.show)
+  router.get('/weebtoon/:id/chapter/:iChapter', ChapterPagesController.show)
 
   // Weebtoon creation
-  router.get('/user/weebtoons', WeebtoonsController.showCreation)
-  router.post('/user/:id/weebtoon', WeebtoonsController.store)
-  router.put('/user/:id/weebtoon/:wId', WeebtoonsController.update)
-  router.delete('/user/:id/weebtoon/:wId', WeebtoonsController.delete)
+  router.get('/user/:id/weebtoons', authorization, WeebtoonsController.showCreation)
+  router.post('/user/:id/weebtoon', authorization, WeebtoonsController.store)
+  router.put('/user/:id/weebtoon/:wId', authorization, WeebtoonsController.update)
+  router.delete('/user/:id/weebtoon/:wId', authorization, WeebtoonsController.delete)
 
   // Weebtoon chapter
-  router.post('/user/:id/weebtoon/:wId/chapter', ChaptersController.store)
-  router.get('/user/:id/weebtoon/:wId/chapters', ChaptersController.showCreation)  
+  router.post('/user/:id/weebtoon/:wId/chapter', authorization, ChaptersController.store)
+  router.get('/user/:id/weebtoon/:wId/chapters', authorization, ChaptersController.showCreation)  
 
   // Creation chapter
-  router.post('/user/:id/weebtoon/:wId/chapter/:cId/image', ChaptersController.storeImg)
-  router.delete('/user/:id/weebtoon/:wId/chapter/:cId/image/:iId', ChaptersController.delete)
-  
+  router.post('/user/:id/weebtoon/:wId/chapter/:cId/image', authorization, ChaptersController.storeImg)
+  router.delete('/user/:id/weebtoon/:wId/chapter/:cId/image/:iId', authorization, ChaptersController.delete)
   
   // Favorites API
   router.get('/weebtoon/:id/favorites', authorization, WeebtoonsController.favorites)
