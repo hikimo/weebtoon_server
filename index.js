@@ -3,7 +3,7 @@ require('express-group-routes')
 const app = express()
 const bodyParser = require('body-parser')
 
-const port = process.env.port || 3000 
+const port = process.env.PORT || 3000 
 
 app.use(bodyParser.json())
 
@@ -16,6 +16,7 @@ const AuthController = require('./controllers/auth')
 // Middlewares
 const { authorization } = require('./middlewares/main')
 
+app.get('/', (req, res) => res.send({message: 'Hello World!'}))
 // Group Router
 app.group('/api/v1', router => {
 
