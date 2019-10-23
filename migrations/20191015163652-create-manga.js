@@ -11,6 +11,9 @@ module.exports = {
       name: {
         type: Sequelize.STRING
       },
+      desc: {
+        type: Sequelize.STRING
+      },
       is_hot: {
         type: Sequelize.BOOLEAN
       },

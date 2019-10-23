@@ -29,24 +29,42 @@ exports.index = (req, res) => {
 }
 
 exports.favorites = (req, res) => {
-  Manga.findAll({
-    // where: { user_id : req.params.id },
+  User.findAll({
+    where: { id : req.params.id },
     include: [
       {
-        model: User,
-        as: 'isFavorite',
-        through: {
-          model: Fav,
-          as: 'favRef',
-          where: { user_id: req.params.id }
-        }
+        model: Manga,
       },
     ]
-  }).then(fav => {
-    if(fav.length > 0)
-      res.send({error: false, fav})
+  }).then(fav => { 
+    if(fav[0].mangas.length > 0)
+      res.send({error: false, data: fav[0].mangas})
     else
-      res.send({error: true, message: 'No favorite(s) found'})
+      res.send({error: true, message: 'No favorite(s)'})
+  })
+}
+
+exports.addFavorite = (req, res) => {
+  Fav.findOrCreate({
+    where: { user_id: req.params.id, manga_id: req.params.wId },
+    defaults: { user_id: req.params.id, manga_id: req.params.wId }
+  }).then(([favorite, created]) => {
+    if(created) {
+      res.send({error: false, message: "success", data: favorite, token})
+    } else {
+      res.send({error: true, message: "Email is already used", email: favorite.email})
+    }
+  })
+}
+
+exports.removeFavorite = (req, res) => {
+  Fav.destroy({
+    where: {
+      user_id: req.params.id,
+      manga_id: req.params.wId
+    }
+  }).then(() => {
+    res.send({error: false, message: 'success'})
   })
 }
 

@@ -5,6 +5,7 @@ module.exports = {
     return queryInterface.bulkInsert('mangas', [
       {
         name: 'overlord',
+        desc: 'A salaryman who called into another world and be a supreme being as a ruler of conpiracy',
         is_hot: true,
         is_favorite: true,
         favorites: 450,
@@ -14,6 +15,7 @@ module.exports = {
       },
       {
         name: 'goblin slayer',
+        desc: 'From Yen Press: A young priestess has formed her first adventuring party, but almost immediately they find themselves in distress.',
         is_hot: true,
         is_favorite: true,
         favorites: 96,
@@ -22,7 +24,8 @@ module.exports = {
         created_by: 1
       },
       {
-        name: 'uchi no ko',
+        name: 'Uchi no Musume no Tame Naraba, Ore wa Moshikashitara Maou mo Taoseru Kamo Shirenai',
+        desc: 'From Konobuta: He met a girl. A young girl branded with the mark of a criminal. That was the beginning of everything.',
         is_hot: false,
         is_favorite: true,
         favorites: 90,
@@ -32,6 +35,7 @@ module.exports = {
       },
       {
         name: 'boruto',
+        desc: 'A new generation of ninja are ready to take the stage, led by Naruto\'s own son, Boruto!',
         is_hot: false,
         is_favorite: false,
         favorites: 45,
@@ -40,7 +44,8 @@ module.exports = {
         created_by: 1
       },
       {
-        name: 'kishuku gakko',
+        name: 'kishuku gakkou no Juliet',
+        desc: '"To Love, or not to Love" Juliet Percia and Inudzuka Romeo are archenemies. They lead two high-school dormitories from to two rivalling countries. However, Percia and Inudzuka long for love and peace for their budding relationship...',
         is_hot: true,
         is_favorite: true,
         favorites: 120,
@@ -49,7 +54,8 @@ module.exports = {
         created_by: 1
       },
       {
-        name: 'RE:zero kara',
+        name: 'Re:Zero kara Hajimeru Isekai Seikatsu',
+        desc: 'Suddenly a high-school student Subaru Natsuki has been summoned to another world on the way back from the convenience store.',
         is_hot: false,
         is_favorite: false,
         favorites: 54,

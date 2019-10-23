@@ -7,11 +7,17 @@ exports.login = (req, res) => {
   const email = req.body.email
   const password = req.body.password
 
-  User.findOne({ where: { email } }).then( user => {
+  User.findOne({ attributes:  ['id', 'name', 'email', 'photo', 'password'], where: { email } }).then( user => {
     if(bcrypt.compareSync(password, user.password)) {
       const token = jwt.sign({ id: user.id }, 'teto-foreva', { expiresIn: 604800000000 })
+      packedData = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        photo: user.photo,
+      }
       res.send({
-        user,
+        data: packedData,
         token
       })
     } else {
@@ -20,7 +26,10 @@ exports.login = (req, res) => {
         message: "Wrong email or password!"
       })
     }
-  })
+  }).catch(() => res.send({
+    error: true,
+    message: "Wrong email or password!"
+  }))
 }
 
 exports.store = (req, res) => {

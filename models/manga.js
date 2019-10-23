@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const manga = sequelize.define('manga', {
     name: DataTypes.STRING,
+    desc: DataTypes.STRING,
     is_hot: DataTypes.BOOLEAN,
     is_favorite: DataTypes.BOOLEAN,
     favorites: DataTypes.INTEGER,
@@ -14,9 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     manga.belongsTo(models.user, {foreignKey: 'created_by'})
     manga.belongsToMany(models.user, {
       through: 'favorites',
-      as: 'isFavorite',
       foreignKey: 'manga_id',
-      //otherKey: 'user_id'
     });
   };
   return manga;
