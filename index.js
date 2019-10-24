@@ -23,6 +23,9 @@ app.group('/api/v1', router => {
   // login API
   router.post('/login', AuthController.login)
   router.post('/register', AuthController.store)
+
+  // user API
+  router.put('/user/:id', authorization, AuthController.update)
   
   // get weebtoon data
   router.get('/weebtoons', WeebtoonsController.index)

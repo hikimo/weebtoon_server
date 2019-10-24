@@ -32,11 +32,24 @@ exports.login = (req, res) => {
   }))
 }
 
+exports.update = (req, res) => {
+  const { name, photo } = req.body
+  User.update({
+    name, photo
+  }, {
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
+    res.send({error: false, message: 'success'})
+  })
+}
+
 exports.store = (req, res) => {
-  const { email, password } = req.body
+  const { name, email, password } = req.body
   User.findOrCreate({
     where: { email },
-    defaults: { email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) }
+    defaults: { name, email, password: bcrypt.hashSync(password, bcrypt.genSaltSync(10)) }
   }).then(([user, created]) => {
     if(created) {
       const token = jwt.sign({ id: user.id }, 'teto-foreva', { expiresIn: 604800000000 })

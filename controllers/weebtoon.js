@@ -68,21 +68,13 @@ exports.removeFavorite = (req, res) => {
 }
 
 exports.showCreation = (req, res) => {
-  User.findAll({
-    attributes: {
-      exclude: [
-        'email', 'password', 'photo', 'createdAt', 'updatedAt'
-      ]
-    },
-    include: [{
-      model: Manga,
-      where: {
-        created_by: req.params.id
-      }
-    }]
+  Manga.findAll({
+    where: {
+      created_by: req.params.id
+    }
   }).then(creation => {
     if(creation.length > 0)
-      res.send({error: false, creation})
+      res.send({error: false, data: creation})
     else
       res.send({error: true, message: 'This user have no manga created'})
   })
