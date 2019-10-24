@@ -44,7 +44,7 @@ app.group('/api/v1', router => {
   router.delete('/user/:id/weebtoon/:wId/chapter/:cId/image/:iId', authorization, ChaptersController.delete)
   
   // Favorites API
-  router.get('/weebtoon/:id/favorites', authorization, WeebtoonsController.favorites)
+  router.get('/weebtoon/:id/favorites', WeebtoonsController.favorites)
   router.post('/weebtoon/:id/favorite/:wId', authorization, WeebtoonsController.addFavorite)
   router.delete('/weebtoon/:id/favorite/:wId', authorization, WeebtoonsController.removeFavorite)
 })

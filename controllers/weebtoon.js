@@ -1,7 +1,7 @@
 const models = require('../models')
 const Manga = models.manga 
 const User = models.user
-const Fav = models.favorite
+const Favorite = models.favorite
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 
@@ -29,18 +29,17 @@ exports.index = (req, res) => {
 }
 
 exports.favorites = (req, res) => {
-  User.findAll({
-    where: { id : req.params.id },
-    include: [
-      {
-        model: Manga,
-      },
-    ]
-  }).then(fav => { 
-    if(fav[0].mangas.length > 0)
-      res.send({error: false, data: fav[0].mangas})
-    else
-      res.send({error: true, message: 'No favorite(s)'})
+  const id = req.params.id
+  Manga.findAll({
+    include: {
+      model: User,
+      where: {id},
+      attributes: {
+        exclude: ["id", "email", "name", "password", "photo", "createdAt", "updatedAt", "favorites"]
+      }
+    }
+  }).then(fav => {
+    res.send(fav)
   })
 }
 
